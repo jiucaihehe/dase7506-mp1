@@ -1,0 +1,37 @@
+{
+  "source_split": "train",
+  "train_targets": 3613342,
+  "seconds": 13.066987375030294,
+  "bytes": 14635591,
+  "uncompressed_bytes": 48119340,
+  "asset_sha256": "161e22ff0a9d2f011afbee318eaa3917d20deca1bcbb5a1ad81a27105db6a1c8",
+  "orders": [
+    {
+      "order": 2,
+      "entries": 298024,
+      "contexts": 1964,
+      "raw_minimum": 1
+    },
+    {
+      "order": 3,
+      "entries": 1391944,
+      "contexts": 298024,
+      "raw_minimum": 1
+    },
+    {
+      "order": 4,
+      "entries": 2410076,
+      "contexts": 1391944,
+      "raw_minimum": 1
+    },
+    {
+      "order": 5,
+      "entries": 270363,
+      "contexts": 222244,
+      "raw_minimum": 2
+    }
+  ],
+  "smoothing": "Interpolated Kneser-Ney with one absolute discount; unigram continuation counts + 0.01 pseudocount",
+  "pruning": "Order 5 retains raw-count >=2 events; orders 2-4 retain all events. Removed discounted mass backs off to the lower order.",
+  "train_text_sha256": "c58d555a94ada0882d1e8c0b3dc7ba68e1c269da5ad9e7a057300245d130c4e8"
+}
