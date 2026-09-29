@@ -4,6 +4,7 @@ from pathlib import Path
 import statistics
 import subprocess
 import sys
+import zipfile
 from common import sha
 
 
@@ -16,11 +17,14 @@ def main():
         if sha(Path('artifacts')/filename) != digest:
             raise SystemExit(f'Frozen checkpoint changed: {filename}')
     root = Path('results')
+    for filename,digest in frozen.get('asset_sha256',{}).items():
+        if sha(Path(filename))!=digest:
+            raise SystemExit(f'Frozen inference asset changed: {filename}')
     root.mkdir(exist_ok=True)
     jobs = [('baseline',i) for i in range(3)] + [('final',i) for i in range(3)]
     # Alternate baseline and final to reduce monotonic load/thermal bias.
     jobs = [item for pair in zip(jobs[:3],jobs[3:]) for item in pair]
-    jobs += [(name,0) for name in ['baseline_cache','no_cache','uniform_cache','uncalibrated_neural']]
+    jobs += [(name,0) for name in frozen['ablation_names']]
     records = []
     for name, repeat in jobs:
         output = root/f'{name}-test-r{repeat}.json'
@@ -40,7 +44,13 @@ def main():
         print(json.dumps(row), flush=True)
     median = {name:statistics.median(r['seconds'] for r in records if r['name']==name)
               for name in ['baseline','final']}
-    assets = {name:Path(name).stat().st_size for name in frozen['inference_assets']}
+    assets = {}
+    for name in frozen['inference_assets']:
+        if name.endswith('.npz'):
+            with zipfile.ZipFile(name) as archive:
+                assets[name]=sum(info.file_size for info in archive.infolist())
+        else:
+            assets[name]=Path(name).stat().st_size
     memory = max(r['peak_rss_gib'] for r in records if r['name']=='final')
     ratio = median['final']/median['baseline']
     result = dict(records=records, median_cpu_seconds=median, cpu_time_ratio=ratio,

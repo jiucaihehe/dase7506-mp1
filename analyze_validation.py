@@ -38,7 +38,7 @@ def main():
     for row in buckets.values():
         row['nats_saved_per_target'] = (row['neural_nll']-row['cache_nll'])/row['targets']
     result = dict(split='validation',buckets=buckets,
-                  interpretation='Positive nats_saved_per_target means the cache improves this group. Categories are descriptive, not additional selection criteria.')
+                  interpretation='Positive nats_saved_per_target means the continuous cache improves this group while the statistical component and all other settings remain fixed. neural_nll names the no-cache comparator, which can still include the statistical mixture. Categories are descriptive, not additional selection criteria.')
     Path('results').mkdir(exist_ok=True)
     Path('results/validation_diagnostics.json').write_text(json.dumps(result,indent=2)+'\n')
     print(json.dumps(result,indent=2))

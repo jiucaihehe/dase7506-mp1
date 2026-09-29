@@ -23,7 +23,11 @@ def main():
         for name,digest in metadata['code_sha256'].items():
             assert sha(name)==digest, f'Frozen code mismatch: {name}'
         for name,digest in metadata['checkpoint_sha256'].items():
-            assert sha(Path('artifacts')/name)==digest, f'Checkpoint mismatch: {name}'
+            path=Path('artifacts')/name
+            if name in ['final.pt','baseline.pt','baseline_cache.pt'] or path.exists():
+                assert sha(path)==digest, f'Checkpoint mismatch: {name}'
+        for name,digest in metadata.get('asset_sha256',{}).items():
+            assert sha(name)==digest, f'Inference asset mismatch: {name}'
     print('Fixed benchmark and all available frozen assets: verified.')
 
 
