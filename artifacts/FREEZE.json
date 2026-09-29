@@ -1,0 +1,101 @@
+{
+  "frozen_at_utc": "2026-09-29T05:34:31.001780+00:00",
+  "selected_on": "validation",
+  "selected_run": "regularized256-gated-s17",
+  "validation_bpb": 1.522428198340209,
+  "config": {
+    "vocab": 2048,
+    "width": 256,
+    "heads": 4,
+    "depth": 4,
+    "context": 256,
+    "dropout": 0.1,
+    "cache_weight": 0.05,
+    "temperature": 1.1,
+    "cache_theta": 16.0,
+    "cache_decay": 0.0,
+    "ngram_discount": 0.5,
+    "ngram_order": 5,
+    "ngram_weight": 0.2,
+    "ngram_asset": "assets/ngram.npz",
+    "ngram_weights_by_order": [
+      0.0,
+      0.0,
+      0.2,
+      0.2,
+      0.2,
+      0.3
+    ]
+  },
+  "train_tokens": 49152000,
+  "seed": 17,
+  "ngram_training_targets": 3613342,
+  "inference_assets": [
+    "artifacts/final.pt",
+    "student.py",
+    "model.py",
+    "ngram.py",
+    "assets/ngram.npz"
+  ],
+  "asset_sha256": {
+    "assets/ngram.npz": "161e22ff0a9d2f011afbee318eaa3917d20deca1bcbb5a1ad81a27105db6a1c8"
+  },
+  "ablation_names": [
+    "baseline_cache",
+    "neural_only",
+    "no_cache",
+    "no_ngram",
+    "uniform_cache",
+    "uncalibrated_neural",
+    "constant_ngram"
+  ],
+  "code_sha256": {
+    "student.py": "c272ad9a4ea7a1b8e8f942e01c43cac10492b525aaa3749a4287237fcc1e6dd9",
+    "model.py": "6cce142a31d396f017319543f50d70f30fa6da740729af01c8baed13c6f671f9",
+    "ngram.py": "f48fb240de534472efb02b05b37360258e11de21a3d5c7459ab300750424c94d",
+    "common.py": "d40dc1fe6578b5993a563bdb4d9e5317ddc9fae8afe48822b66571c7042e84db",
+    "evaluate.py": "128bcb2dab0be0d427505bddb4671e3ab3a8f78e114be79a689c0f9029af133d",
+    "train.py": "70c16a20537de1286737f9eb056bc453a9b87b33ae7f1024677d415650979dfe",
+    "train_experiment.py": "2e522a9bea9b47595fb3180602afac300fa34bac20217ce0762534cbab7276db",
+    "train_continue.py": "6b660853a1696bb2153627e32d2867ab1eb1a912a31c5ff26d59073200aa8055",
+    "train_mps.py": "d40f43475733d0f3f08ad8f7fdb64b52b45265d864de47dd45e3c4969188cffc",
+    "tune_cache.py": "aa7c781b34864c387a920c40d577cd1b26d5a486fbacf4080fb685c4874517b6",
+    "tune_hybrid.py": "cb104e637372794fe357cd7f748f8bf5879a9175999d57374db7be29a215c8a8",
+    "tune_gate.py": "26d8ef86d4efbd758e398ee3e4878f783d64c014db587b723d0667cd1c8743ee",
+    "build_ngram.py": "5f44696ac05d8397125695f8ccfd1962bf0098c7dbf79cd90acba047a9f51cd7",
+    "measure_eval.py": "2fb6176c7bd8a1a1306a097c1c0aec6d7fed2f2a67a3c8fd6c95be2045525b71",
+    "benchmark_frozen.py": "1d5dc192e9c96487c5593090e87348f7492a63c63fe4eb01a80e098502a9f9d4",
+    "freeze_submission.py": "2c22222d909dac4c709b0e020c917fb7290ed55f90832d06c1d8e562f0c4c178",
+    "verify_package.py": "8965964c5cb21a15125b21602c8551eccb8a7becac633f6773ee7cd51363ddb6",
+    "materialize_ablations.py": "1778ec4696858eaadf46db4637f8bf7bb036da0dad51aef9b6db150a1b03de46",
+    "requirements.txt": "901a883f6b85ac79faaac149808f5eee8ec0ed0c36482255304c0124700319af",
+    "configs/baseline.json": "6b0c87aa8e15107b78d9789b8f254559735eb0eee81f941715bcc216bdb09e7d",
+    "configs/wide.json": "dbeec69cac69668cd842ef649e5bbf6fc997723c60871d52343b403343bb48ef",
+    "configs/regularized256.json": "0083fb31f9e31ffb6aa288ca42b6b69762651d08ca19449283ea6b729c77d003",
+    "data/tokenizer.json": "020d1bc6aa4449c4f352b2e03d0e0fb4f39287f15297705e421b1fa7d817262e"
+  },
+  "checkpoint_sha256": {
+    "baseline.pt": "5bb600b4dc65e8a8fa0eaa6841955b99754bbb61b060fb626d0855940d26206a",
+    "baseline_cache.pt": "4ab5b7f50d497623698f60ed281125be74a65cd7b33d506624a5cf11163f0a74",
+    "constant_ngram.pt": "c7dac7e99df7926761e2e8f0fdab4a5553f31908008a5e8f4848cef42ae40015",
+    "final.pt": "132eb36bf132406709b4610473b39ff9ae7400fb40520bffcc922f8dfb495cb2",
+    "neural_only.pt": "722c0c1e8d267018038e9142603b1da17b457a1db26f7cfed3124650261fdd6f",
+    "no_cache.pt": "afdb2da38ea3e0ac56a118ee0305c36efa2b836b9c3aee6fba74b1e24dd590fb",
+    "no_ngram.pt": "e87b158e669206023d5e3643ad3a9a13cb85fa69fc10190ef64984091962c2a3",
+    "uncalibrated_neural.pt": "e2e36702d21c3e431a815bafd4ca9eaa35d7b9b19b7607bf77a641111995e65b",
+    "uniform_cache.pt": "01b3cd84c8d9c30873cc32d5f1dc74f331b8177950284b728aa8f46fe2855764"
+  },
+  "candidate_validation_bpb": {
+    "baseline-cache-s17": 1.9995058941722041,
+    "continued-cache-s17": 1.644132718859925,
+    "continued-gated-s17": 1.5687138621556675,
+    "continued-hybrid-s17": 1.5696634097908297,
+    "regularized256-cache-s17": 1.5667241654454303,
+    "regularized256-gated-s17": 1.522428198340209,
+    "regularized256-hybrid-s17": 1.5235366091609874,
+    "wide-cache-s17": 1.6667509726793608,
+    "wide-gated-s17": 1.581799884615597,
+    "wide-hybrid-s17": 1.5834103543878741
+  },
+  "notes": "All variants frozen together before any test scoring. Ablations reuse the same fitted components and disable one inference mechanism; shared n-gram fitting cost is disclosed separately from gradient training."
+}
